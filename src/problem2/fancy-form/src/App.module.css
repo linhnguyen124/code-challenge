@@ -1,0 +1,5 @@
+.bg {
+  background-image: var(--gradient-primary-vertical);
+  background-size: 200px 200px, 100%;
+  background-position: 0 0;
+}

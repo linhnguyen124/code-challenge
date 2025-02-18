@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+@theme {
+  --grain-15-url: url(/media/15percent@1x.png);
+  --gradient-primary-vertical: var(--grain-15-url),
+    linear-gradient(
+      2deg,
+      color(display-p3 0.0666666667 0 0.4784313725) 2.71%,
+      color(display-p3 0.3882352941 0.1568627451 0.7647058824) 48.51%,
+      color(display-p3 0.8901960784 0.4196078431 1) 91.53%
+    );
+
+  --shadow-input: 0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+
+  --animate-accordion-down: accordion-down 0.1s ease-in-out;
+  --animate-accordion-up: accordion-up 0.1s ease-in-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: 'var(--radix-accordion-content-height)';
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: 'var(--radix-accordion-content-height)';
+    }
+    to {
+      height: 0;
+    }
+  }
+}
