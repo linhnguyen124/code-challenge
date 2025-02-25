@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const toCurrency = document.getElementById("to-currency");
   const swapButton = document.getElementById("swap-btn");
   const form = document.getElementById("swap-form");
+  const fromIcon = document.getElementById("from-icon");
+  const toIcon = document.getElementById("to-icon");
 
   let exchangeRates = {};
 
@@ -15,19 +17,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       );
       const data = await response.json();
 
-      if (!Array.isArray(data)) {
-        throw new Error("Invalid exchange rate data format");
-      }
-
       exchangeRates = data.reduce((acc, entry) => {
-        if (entry.currency && entry.price) {
-          acc[entry.currency] = entry.price;
-        }
+        acc[entry.currency] = entry.price;
         return acc;
       }, {});
-
-      fromCurrency.innerHTML = "";
-      toCurrency.innerHTML = "";
 
       Object.keys(exchangeRates).forEach((currency) => {
         let option1 = new Option(currency, currency);
@@ -38,15 +31,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       fromCurrency.value = "SWTH";
       toCurrency.value = "ETH";
+
+      updateIcons();
     } catch (error) {
       console.error("Error fetching exchange rates:", error);
     }
+  }
+
+  function updateIcons() {
+    fromIcon.src = `https://raw.githubusercontent.com/Switcheo/token-icons/main/tokens/${fromCurrency.value}.svg`;
+    toIcon.src = `https://raw.githubusercontent.com/Switcheo/token-icons/main/tokens/${toCurrency.value}.svg`;
   }
 
   swapButton.addEventListener("click", () => {
     let temp = fromCurrency.value;
     fromCurrency.value = toCurrency.value;
     toCurrency.value = temp;
+    updateIcons();
     calculateExchange();
   });
 
@@ -67,8 +68,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   inputAmount.addEventListener("input", calculateExchange);
-  fromCurrency.addEventListener("change", calculateExchange);
-  toCurrency.addEventListener("change", calculateExchange);
+  fromCurrency.addEventListener("change", () => {
+    updateIcons();
+    calculateExchange();
+  });
+  toCurrency.addEventListener("change", () => {
+    updateIcons();
+    calculateExchange();
+  });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
