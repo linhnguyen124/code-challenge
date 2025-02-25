@@ -6,3 +6,62 @@ body {
   min-width: 360px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input, select, button {
+  padding: 10px;
+  margin-top: 5px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+#swap-btn {
+  background: #ddd;
+  color: black;
+  font-size: 16px;
+  margin: 10px auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.input-container img {
+  width: 24px;
+  height: 24px;
+}
